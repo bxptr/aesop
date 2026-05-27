@@ -1,0 +1,19 @@
+[model]
+name = "token-rnn128-neural-compact2-v384-lat48r4-s4500"
+vocab = 384
+hidden = 128
+qscale = 64
+latent_buckets = 48
+latent_repeat = 4
+
+[sampler]
+top_k = 8
+margin = 64
+repeat_penalty = 96
+weights = [10, 8, 6, 4, 3, 2, 1, 1]
+force_first_once = true
+local_repairs = true
+
+[paths]
+checkpoint = "aesop/checkpoints/model.npz"
+generated_header = "runtime/src/generated_model.h"
