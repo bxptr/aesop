@@ -1,8 +1,8 @@
 # aesop 
 
-AESOP is a tiny neural story generator that runs fully offline on a TI-84 Plus CE Python Edition. The checkpoint included in `aesop/checkpoints/model.npz` is an int-quantized H128 token RNN with CE-native sampling, paging, persistent RNG, and a recurrent-step asm megakernel. I've done sweeps and playing around with hyperparameters and memory constraints on CE and this seems like the best performance one can get, at least with these somewhat naive optimizations and an RNN architecture. A larger H160 model errors out because of insufficient memory.
+AESOP is a small and cute autoregressive story generator that runs fully offline on a TI-84 Plus CE Python Edition. The checkpoint included in `aesop/checkpoints/model.npz` is an int-quantized H128 token RNN with CE-native sampling, paging, persistent RNG, and a recurrent-step asm megakernel. I've done sweeps and playing around with hyperparameters and memory constraints on CE and this seems like the best performance one can get, at least with these somewhat naive optimizations and an RNN architecture. A larger H160 model errors out because of insufficient memory.
 
-The model included has a vocab size of 384 and 48 latent buckets. I've taken the time to setup a recurrent-step megakernel and a H128 output row-dot kernel to allow for impressively fast execution. The included trained checkpoint is around 155k parameters, which I found impressive for the z380 CPU on the CE. For 208 characters, the benchmarked CPU cycles on my CE is `423,018,983`.
+The model included has a vocab size of 384 and 48 latent buckets. I've taken the time to setup a recurrent-step megakernel and a H128 output row-dot kernel to allow for fast execution. The included trained checkpoint is around 155k parameters, which I found impressive for the z380 CPU on the CE. For 208 characters, the benchmarked CPU cycles on my CE is `423,018,983`.
 
 Put [CEdev](https://ce-programming.github.io/toolchain/) at `tools/CEdev` and install the host dependencies via npm. See the `Makefile` for build, evaluation, and deploy commands.
 
